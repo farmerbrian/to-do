@@ -44,15 +44,19 @@ body {
   border-radius: 10px;
 }
 
-.task {
+.task-title-div {
   display: flex;
   flex-direction: row;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin: 10px;
+
+}
+
+.task {
   border: 2px solid white ;
   border-radius: 10px;
   gap: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 10px;
 }
 
 .task-name {

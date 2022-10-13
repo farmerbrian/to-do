@@ -8,10 +8,10 @@ const makeTask = (title) => {
 	task.description = '';
 	task.notes = '';
 	task.complete = false;
-	console.log('hello this is inside makeTask');
+	// console.log('hello this is inside makeTask');
 	task.add = function () {
 		tasks.push(this);
-		console.log('inside task add');
+		// console.log('inside task add');
 		// console.log(tasks);
 		return tasks;
 	};
@@ -21,12 +21,19 @@ const makeTask = (title) => {
 	return task;
 };
 
-const content = document.getElementById('content-container');
+const content = document.getElementById('tasks-container');
+
+function refreshTasks() {
+	content.innerHTML = null;
+}
 
 function updateTasks(array) {
 	for (let i = 0; i < array.length; i++) {
 		let divEl = document.createElement('div');
-		divEl.classList.add('task');
+		divEl.className = 'task';
+		divEl.id = `${i}`;
+		let divTitleEl = document.createElement('div');
+		divTitleEl.className = 'task-title-div';
 		let inputEl = document.createElement('input');
 		inputEl.type = 'checkbox';
 		inputEl.id = `checkbox-${i}`;
@@ -35,10 +42,11 @@ function updateTasks(array) {
 		let inputH3 = document.createElement('h3');
 		inputH3.classList.add('task-name');
 		inputH3.innerHTML = array[i].title;
-		divEl.appendChild(inputEl);
-		divEl.appendChild(inputH3);
+		divTitleEl.appendChild(inputEl);
+		divTitleEl.appendChild(inputH3);
+		divEl.appendChild(divTitleEl);
 		content.appendChild(divEl);
-		console.log('inside in updatetasks');
+		// console.log('inside in updatetasks');
 	}
 	// return content;
 }
@@ -49,4 +57,6 @@ function updateTasks(array) {
 
 export { makeTask };
 export { updateTasks };
+export { refreshTasks };
+
 export { tasks };
