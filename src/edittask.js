@@ -1,6 +1,6 @@
 import { tasks, updateTasks, refreshTasks } from './maketask.js';
 
-function showDetailsListner() {
+function showDetailsListener() {
 	const allTasks = document.querySelectorAll('.task');
 	allTasks.forEach((taskDiv) => {
 		taskDiv.firstChild.addEventListener('click', (event) => {
@@ -102,7 +102,7 @@ function showDetails(id) {
 		saveDetails(saveTaskBtnId.id);
 		refreshTasks();
 		updateTasks(tasks);
-		showDetailsListner();
+		showDetailsListener();
 	});
 }
 
@@ -124,4 +124,4 @@ function saveDetails(id) {
 
 export { showDetails };
 export { saveDetails };
-export { showDetailsListner };
+export { showDetailsListener };

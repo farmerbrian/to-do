@@ -25,15 +25,21 @@ body {
 #main-container {
   grid-column: 2 / 3;
   display: grid;
-  grid-template-rows: 50px auto;
+  grid-template-rows: 55px auto;
   padding: 25px;
 }
 
 #header-container {
   grid-row: 1 / 2;
   text-align: right;
+ 
   background-color: #181c32;
   border-radius: 10px;
+}
+
+#new-task-form {
+  
+   padding-right: 10px;
 }
 
 #content-container {
@@ -44,12 +50,6 @@ body {
   border-radius: 10px;
 }
 
-.task-title-div {
-  display: flex;
-  flex-direction: row;
-
-}
-
 .task {
   border: 2px solid white ;
   border-radius: 10px;
@@ -57,6 +57,31 @@ body {
   padding-left: 15px;
   padding-right: 15px;
   margin: 10px;
+}
+
+.task-title-div {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.task-details-form {
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid white;
+  padding-top: 15px;
+ }
+
+input {
+  border-radius: 10px;
+  padding: 2px;
+  margin: 15px;
+  
+}
+
+#saveBtn {
+ margin-bottom: 15px;
+
 }
 
 .task-name {

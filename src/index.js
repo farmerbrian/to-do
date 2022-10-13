@@ -6,7 +6,7 @@ import { tasks } from './maketask.js';
 import { refreshTasks } from './maketask.js';
 import { showDetails } from './edittask.js';
 import { saveDetails } from './edittask.js';
-import { showDetailsListner } from './edittask.js';
+import { showDetailsListener } from './edittask.js';
 
 const newTaskBtn = document.querySelector('#newTask');
 const newTaskValue = document.getElementById('task');
@@ -15,6 +15,7 @@ newTaskBtn.addEventListener('click', (event) => {
 	newTask.add();
 	refreshTasks();
 	updateTasks(tasks);
+	showDetailsListener();
 });
 
 // let tasks = [];
@@ -28,4 +29,4 @@ taskA.description = 'This is a task I need to do.';
 
 updateTasks(tasks);
 
-showDetailsListner();
+showDetailsListener();

@@ -8,11 +8,9 @@ const makeTask = (title) => {
 	task.description = '';
 	task.notes = '';
 	task.complete = false;
-	// console.log('hello this is inside makeTask');
 	task.add = function () {
 		tasks.push(this);
-		// console.log('inside task add');
-		// console.log(tasks);
+
 		return tasks;
 	};
 	// task.remove = function () {
