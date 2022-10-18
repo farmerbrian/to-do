@@ -34,17 +34,19 @@ newProjectBtn.addEventListener('click', (event) => {
 	// refreshTasks();
 	// updateTasks(tasks);
 	// showDetailsListener();
+	newProjectValue.value = '';
 });
 
 const newTaskBtn = document.querySelector('#newTask');
 const newTaskValue = document.getElementById('task');
 newTaskBtn.addEventListener('click', (event) => {
 	event.preventDefault();
-	let newTask = makeTask(newTaskValue.value);
+	let newTask = makeTask(0, newTaskValue.value);
 	newTask.add();
 	refreshTasks();
-	updateTasks(tasks);
+	updateTasks(projects[0].tasks);
 	showDetailsListener();
+	newTaskValue.value = '';
 });
 
 const defaultProject = makeProject('Reminders');
