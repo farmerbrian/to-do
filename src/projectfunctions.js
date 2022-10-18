@@ -3,7 +3,7 @@ let projects = [];
 const makeProject = (title) => {
 	const project = {};
 	project.title = title;
-	project.taskList = [];
+	project.tasks = [];
 	project.add = function () {
 		projects.push(this);
 		return projects;

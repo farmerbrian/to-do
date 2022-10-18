@@ -10,11 +10,31 @@ import { showDetailsListener } from './taskfunctions.js';
 import { projects } from './projectfunctions.js';
 import { makeProject } from './projectfunctions.js';
 
-document
-	.getElementById('task')
-	.addEventListener('submit', function (event) {
-		event.preventDefault();
-	});
+function preventRefresh() {
+	let taskForm = document
+		.getElementById('task')
+		.addEventListener('submit', function (event) {
+			event.preventDefault();
+		});
+	let projectForm = document
+		.getElementById('project')
+		.addEventListener('submit', function (event) {
+			event.preventDefault();
+		});
+}
+preventRefresh();
+
+const newProjectBtn = document.querySelector('#newProject');
+const newProjectValue = document.getElementById('project');
+newProjectBtn.addEventListener('click', (event) => {
+	event.preventDefault();
+	let newProject = makeProject(newProjectValue.value);
+	newProject.add();
+	console.log(projects);
+	// refreshTasks();
+	// updateTasks(tasks);
+	// showDetailsListener();
+});
 
 const newTaskBtn = document.querySelector('#newTask');
 const newTaskValue = document.getElementById('task');
@@ -29,16 +49,16 @@ newTaskBtn.addEventListener('click', (event) => {
 
 const defaultProject = makeProject('Reminders');
 defaultProject.add();
-console.log(projects);
 
-const taskA = makeTask('Pick up groceries');
+const taskA = makeTask('0', 'Pick up groceries');
 taskA.add();
 
-const taskB = makeTask('Take out trash');
+const taskB = makeTask('0', 'Take out trash');
 taskB.add();
 
 taskA.description = 'This is a task I need to do.';
 
-updateTasks(tasks);
+updateTasks(projects[0].tasks);
 
 showDetailsListener();
+console.log(projects);

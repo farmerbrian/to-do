@@ -1,6 +1,8 @@
+import { projects } from './projectfunctions.js';
+// import {makeProject} from './projectfunctions.js';
 let tasks = [];
 
-const makeTask = (title) => {
+const makeTask = (project, title) => {
 	const task = {};
 	task.title = title;
 	task.dueDate = '';
@@ -9,9 +11,9 @@ const makeTask = (title) => {
 	task.notes = '';
 	task.complete = false;
 	task.add = function () {
-		tasks.push(this);
+		projects[project].tasks.push(this);
 
-		return tasks;
+		return projects[project].tasks;
 	};
 	// task.remove = function () {
 
@@ -75,7 +77,7 @@ function showDetailsListener() {
 	});
 }
 
-function showDetails(id) {
+function showDetails(project, id) {
 	const div = document.getElementById(id);
 
 	let detailsDiv = document.createElement('div');
@@ -91,7 +93,7 @@ function showDetails(id) {
 	inputTitle.type = 'text';
 	inputTitle.id = 'taskTitle';
 	inputTitle.name = 'taskTitle';
-	inputTitle.value = tasks[id].title;
+	inputTitle.value = projects[project].tasks[id].title;
 
 	let labelDueDate = document.createElement('label');
 	labelDueDate.htmlFor = 'taskDueDate';
@@ -100,7 +102,7 @@ function showDetails(id) {
 	inputDueDate.type = 'date';
 	inputDueDate.id = 'taskDueDate';
 	inputDueDate.name = 'taskDueDate';
-	inputDueDate.value = tasks[id].dueDate;
+	inputDueDate.value = projects[project].tasks[id].dueDate;
 
 	let labelPriority = document.createElement('label');
 	labelPriority.htmlFor = 'taskPriority';
@@ -109,7 +111,7 @@ function showDetails(id) {
 	inputPriority.type = 'number';
 	inputPriority.id = 'taskPriority';
 	inputPriority.name = 'taskPriority';
-	inputPriority.value = tasks[id].priority;
+	inputPriority.value = projects[project].tasks[id].priority;
 
 	let labelDesc = document.createElement('label');
 	labelDesc.htmlFor = 'taskDescription';
@@ -118,7 +120,7 @@ function showDetails(id) {
 	inputDesc.type = 'text';
 	inputDesc.id = 'taskDescription';
 	inputDesc.name = 'taskDescription';
-	inputDesc.value = tasks[id].description;
+	inputDesc.value = projects[project].tasks[id].description;
 
 	let labelNotes = document.createElement('label');
 	labelNotes.htmlFor = 'taskNotes';
@@ -127,7 +129,7 @@ function showDetails(id) {
 	inputNotes.type = 'text';
 	inputNotes.id = 'taskNotes';
 	inputNotes.name = 'taskNotes';
-	inputNotes.value = tasks[id].notes;
+	inputNotes.value = projects[project].tasks[id].notes;
 
 	let saveBtn = document.createElement('button');
 	saveBtn.type = 'button';
@@ -154,23 +156,23 @@ function showDetails(id) {
 		// console.log(saveTaskBtnId.id);
 		saveDetails(saveTaskBtnId.id);
 		refreshTasks();
-		updateTasks(tasks);
+		updateTasks(projects[project].tasks);
 		showDetailsListener();
 	});
 }
 
-function saveDetails(id) {
+function saveDetails(project, id) {
 	const title = document.getElementById('taskTitle');
 	// console.log(title.value);
-	tasks[id].title = title.value;
+	projects[project].tasks[id].title = title.value;
 	const dueDate = document.getElementById('taskDueDate');
-	tasks[id].dueDate = dueDate.value;
+	projects[project].tasks[id].dueDate = dueDate.value;
 	const priority = document.getElementById('taskPriority');
-	tasks[id].priority = priority.value;
+	projects[project].tasks[id].priority = priority.value;
 	const description = document.getElementById('taskDescription');
-	tasks[id].description = description.value;
+	projects[project].tasks[id].description = description.value;
 	const notes = document.getElementById('taskNotes');
-	tasks[id].notes = notes.value;
+	projects[project].tasks[id].notes = notes.value;
 	// updateTasks(tasks);
 	// console.log(tasks);
 }
@@ -182,5 +184,5 @@ export { showDetailsListener };
 export { makeTask };
 export { updateTasks };
 export { refreshTasks };
-
+export { projects };
 export { tasks };
