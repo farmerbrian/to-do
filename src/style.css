@@ -12,6 +12,10 @@ body {
   font-style: italic;
 }
 
+h3 {
+  font-weight: 500;
+}
+
 #page-container {
   display: grid;
   grid-template-columns: 250px auto;
@@ -23,11 +27,24 @@ body {
   background-color: #181c32;
   height: 100vh;
   padding: 20px;
+  margin-top: 6px;
+}
 
+#project-container {
+  margin-top: 15px;
 }
 
 .project-title{
+  margin-top: 15px;
+  margin-bottom: 50px;
   text-align: center;
+}
+
+.project-title-div {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
 }
 
 #new-project-form {
@@ -107,7 +124,7 @@ input {
   text-align: right;
 }
 
-button {
+.add-button {
   border:0;
   background: none;
 }

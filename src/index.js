@@ -9,6 +9,10 @@ import { saveDetails } from './taskfunctions.js';
 import { showDetailsListener } from './taskfunctions.js';
 import { projects } from './projectfunctions.js';
 import { makeProject } from './projectfunctions.js';
+import { refreshProjects } from './projectfunctions.js';
+import { updateProjects } from './projectfunctions.js';
+import { selectProjectListener } from './projectfunctions.js';
+import { selectedProject } from './projectfunctions.js';
 
 function preventRefresh() {
 	let taskForm = document
@@ -19,6 +23,8 @@ function preventRefresh() {
 	let projectForm = document
 		.getElementById('project')
 		.addEventListener('submit', function (event) {
+			console.log('This is in the preventRefresh function:');
+			console.log(event);
 			event.preventDefault();
 		});
 }
@@ -30,23 +36,26 @@ newProjectBtn.addEventListener('click', (event) => {
 	event.preventDefault();
 	let newProject = makeProject(newProjectValue.value);
 	newProject.add();
-	console.log(projects);
-	// refreshTasks();
-	// updateTasks(tasks);
-	// showDetailsListener();
+	// console.log(projects);
 	newProjectValue.value = '';
+	refreshProjects();
+	updateProjects(projects);
+	selectProjectListener();
+	refreshTasks();
+	updateTasks(projects[selectedProject].tasks);
+	showDetailsListener();
 });
 
 const newTaskBtn = document.querySelector('#newTask');
 const newTaskValue = document.getElementById('task');
 newTaskBtn.addEventListener('click', (event) => {
 	event.preventDefault();
-	let newTask = makeTask(0, newTaskValue.value);
+	let newTask = makeTask(selectedProject, newTaskValue.value);
+	newTaskValue.value = '';
 	newTask.add();
 	refreshTasks();
-	updateTasks(projects[0].tasks);
+	updateTasks(projects[selectedProject].tasks);
 	showDetailsListener();
-	newTaskValue.value = '';
 });
 
 const defaultProject = makeProject('Reminders');
@@ -60,7 +69,9 @@ taskB.add();
 
 taskA.description = 'This is a task I need to do.';
 
-updateTasks(projects[0].tasks);
+updateTasks(projects[selectedProject].tasks);
+updateProjects(projects);
 
+selectProjectListener();
 showDetailsListener();
 console.log(projects);
