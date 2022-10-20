@@ -171,11 +171,8 @@ function showDetails(project, id) {
 
 function checkboxListener() {
 	const allCheckboxes = document.querySelectorAll('.checkbox');
-	// console.log(allCheckboxes);
 	allCheckboxes.forEach((taskCheckBox) => {
 		taskCheckBox.addEventListener('click', (event) => {
-			// console.log('trying to save checkbox');
-			// console.log(taskCheckBox.id.match(/[0-9]+/g));
 			saveCheckbox(selectedProject, taskCheckBox.id.match(/[0-9]+/g));
 		});
 	});
@@ -183,10 +180,13 @@ function checkboxListener() {
 
 function saveCheckbox(project, id) {
 	const checkbox = document.getElementById(`checkbox-${id}`);
-	// console.log(
-	// 	`inside saveCheckbox, project=${project}, id=${id}, checkbox=${checkbox.checked}`
-	// );
-	// console.log(projects[project].tasks[id]);
+	const findTaskDiv = document.getElementById(id);
+	const findH3 = findTaskDiv.querySelector('.task-name');
+	if (checkbox.checked == true) {
+		findH3.classList.add('completed-task');
+	} else {
+		findH3.classList.remove('completed-task');
+	}
 	projects[project].tasks[id].complete = checkbox.checked;
 	localStorage.setItem('projects', JSON.stringify(projects));
 }

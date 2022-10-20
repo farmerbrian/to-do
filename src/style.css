@@ -110,18 +110,38 @@ h3 {
 input {
   border-radius: 10px;
   padding: 2px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin: 15px;
-  
+  height: 35px;
+  border-style: none;
+}
+
+#delBtn, #saveBtn {
+  margin-bottom: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  height: 35px;
+  border-radius: 10px;
+  border-color: none;
+  border-style: none;
+}
+
+#delBtn {
+ margin-top: 15px;
+  background-color: rgb(234, 38, 89);
+  color: white;
 }
 
 #saveBtn {
- margin-bottom: 15px;
-
+  background-color: rgb(69, 198, 118);
+  color: white;
 }
 
 .task-name {
   flex: 1 1 auto;
   text-align: right;
+  cursor: pointer;
 }
 
 .add-button {
@@ -129,9 +149,7 @@ input {
   background: none;
 }
 
-#delBtn {
-  margin-bottom: 15px;
-}
+
 
 .add-icon {
   fill: white;
@@ -140,4 +158,8 @@ input {
   /* display: block;
   margin: auto;
   text-align: center; */
+}
+
+.completed-task {
+  text-decoration-line: line-through;
 }
