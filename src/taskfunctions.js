@@ -16,9 +16,7 @@ const makeTask = (project, title) => {
 
 		return projects[project].tasks;
 	};
-	// task.remove = function () {
 
-	// };
 	return task;
 };
 
@@ -39,6 +37,7 @@ function updateTasks(array) {
 		inputEl.type = 'checkbox';
 		inputEl.id = `checkbox-${i}`;
 		inputEl.name = 'complete';
+		inputEl.checked = array[i].complete;
 		inputEl.classList.add('checkbox');
 		let inputH3 = document.createElement('h3');
 		inputH3.classList.add('task-name');
@@ -74,7 +73,6 @@ function showDetailsListener() {
 }
 
 function showDetails(project, id) {
-	// LEFT OFF HERE -  Can't figure out how to select by ID for only the task DIV's
 	const div = document.getElementById(`${id}`);
 
 	let detailsDiv = document.createElement('div');
@@ -128,6 +126,11 @@ function showDetails(project, id) {
 	inputNotes.name = 'taskNotes';
 	inputNotes.value = projects[project].tasks[id].notes;
 
+	let delBtn = document.createElement('button');
+	delBtn.type = 'button';
+	delBtn.id = 'delBtn';
+	delBtn.innerHTML = 'Delete';
+
 	let saveBtn = document.createElement('button');
 	saveBtn.type = 'button';
 	saveBtn.id = 'saveBtn';
@@ -143,9 +146,19 @@ function showDetails(project, id) {
 	detailsForm.appendChild(inputDesc);
 	detailsForm.appendChild(labelNotes);
 	detailsForm.appendChild(inputNotes);
+	detailsForm.appendChild(delBtn);
 	detailsForm.appendChild(saveBtn);
 	detailsDiv.appendChild(detailsForm);
 	div.appendChild(detailsDiv);
+
+	const delTaskBtn = document.getElementById('delBtn');
+	delTaskBtn.addEventListener('click', (event) => {
+		projects[selectedProject].tasks.splice(id, 1);
+		refreshTasks();
+		updateTasks(projects[project].tasks);
+		showDetailsListener();
+		// return projects;
+	});
 
 	const saveTaskBtn = document.getElementById('saveBtn');
 	saveTaskBtn.addEventListener('click', (event) => {
@@ -158,19 +171,26 @@ function showDetails(project, id) {
 	});
 }
 
-// const allCheckboxes = document.querySelectorAll('.checkbox');
-// allCheckboxes.forEach((taskCheckBox) => {
-// 	console.log('trying to save checkbox');
-// 	taskCheckBox.addEventListener('click', (event) => {
-// 		saveCheckbox(selectedProject, taskCheckBox.id);
-// 	});
-// });
+function checkboxListener() {
+	const allCheckboxes = document.querySelectorAll('.checkbox');
+	// console.log(allCheckboxes);
+	allCheckboxes.forEach((taskCheckBox) => {
+		taskCheckBox.addEventListener('click', (event) => {
+			console.log('trying to save checkbox');
+			console.log(taskCheckBox.id.match(/[0-9]+/g));
+			saveCheckbox(selectedProject, taskCheckBox.id.match(/[0-9]+/g));
+		});
+	});
+}
 
-// function saveCheckbox(project, id) {
-// 	const checkbox = document.getElementById(`checkbox-${id}`);
-// 	projects[project].tasks[id].complete =
-// 		checkbox.value.match(/[0-9]+/g);
-// }
+function saveCheckbox(project, id) {
+	const checkbox = document.getElementById(`checkbox-${id}`);
+	// console.log(
+	// 	`inside saveCheckbox, project=${project}, id=${id}, checkbox=${checkbox.checked}`
+	// );
+	// console.log(projects[project].tasks[id]);
+	projects[project].tasks[id].complete = checkbox.checked;
+}
 
 function saveDetails(project, id) {
 	const title = document.getElementById('taskTitle');
@@ -188,7 +208,7 @@ function saveDetails(project, id) {
 export { showDetails };
 export { saveDetails };
 export { showDetailsListener };
-
+export { checkboxListener };
 export { makeTask };
 export { updateTasks };
 export { refreshTasks };

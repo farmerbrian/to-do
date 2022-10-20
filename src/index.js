@@ -2,7 +2,7 @@ import './style.css';
 
 import { makeTask } from './taskfunctions.js';
 import { updateTasks } from './taskfunctions.js';
-import { tasks } from './taskfunctions.js';
+import { checkboxListener } from './taskfunctions.js';
 import { refreshTasks } from './taskfunctions.js';
 import { showDetails } from './taskfunctions.js';
 import { saveDetails } from './taskfunctions.js';
@@ -44,6 +44,7 @@ newProjectBtn.addEventListener('click', (event) => {
 	refreshTasks();
 	updateTasks(projects[selectedProject].tasks);
 	showDetailsListener();
+	checkboxListener();
 });
 
 const newTaskBtn = document.querySelector('#newTask');
@@ -56,6 +57,7 @@ newTaskBtn.addEventListener('click', (event) => {
 	refreshTasks();
 	updateTasks(projects[selectedProject].tasks);
 	showDetailsListener();
+	checkboxListener();
 });
 
 const defaultProject = makeProject('Reminders');
@@ -72,6 +74,7 @@ taskA.description = 'This is a task I need to do.';
 updateTasks(projects[selectedProject].tasks);
 updateProjects(projects);
 
+checkboxListener();
 selectProjectListener();
 showDetailsListener();
 console.log(projects);

@@ -129,6 +129,10 @@ input {
   background: none;
 }
 
+#delBtn {
+  margin-bottom: 15px;
+}
+
 .add-icon {
   fill: white;
   height: 30px;
