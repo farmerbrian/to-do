@@ -1,8 +1,13 @@
 import { updateTasks } from './taskfunctions.js';
 import { refreshTasks } from './taskfunctions.js';
 import { showDetailsListener } from './taskfunctions.js';
-
-let projects = [];
+let projects;
+let storage = JSON.parse(localStorage.getItem('projects'));
+if (storage) {
+	projects = storage;
+} else {
+	projects = [];
+}
 
 let selectedProject = 0;
 
@@ -12,6 +17,7 @@ const makeProject = (title) => {
 	project.tasks = [];
 	project.add = function () {
 		projects.push(this);
+		localStorage.setItem('projects', JSON.stringify(projects));
 		return projects;
 	};
 	// projects.remove = function () {

@@ -4,7 +4,6 @@ import { makeTask } from './taskfunctions.js';
 import { updateTasks } from './taskfunctions.js';
 import { checkboxListener } from './taskfunctions.js';
 import { refreshTasks } from './taskfunctions.js';
-
 import { showDetailsListener } from './taskfunctions.js';
 import { projects } from './projectfunctions.js';
 import { makeProject } from './projectfunctions.js';
@@ -60,16 +59,20 @@ newTaskBtn.addEventListener('click', (event) => {
 	checkboxListener();
 });
 
-const defaultProject = makeProject('Reminders');
-defaultProject.add();
+console.log(projects);
 
-const taskA = makeTask('0', 'Pick up groceries');
-taskA.add();
+if (projects.length == 0) {
+	const defaultProject = makeProject('Reminders');
+	defaultProject.add();
 
-const taskB = makeTask('0', 'Take out trash');
-taskB.add();
+	const taskA = makeTask('0', 'Pick up groceries');
+	taskA.add();
 
-taskA.description = 'This is a task I need to do.';
+	const taskB = makeTask('0', 'Take out trash');
+	taskB.add();
+
+	taskA.description = 'This is a task I need to do.';
+}
 
 refreshTasks();
 updateTasks(projects[selectedProject].tasks);

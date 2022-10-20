@@ -11,7 +11,7 @@ const makeTask = (project, title) => {
 	task.complete = false;
 	task.add = function () {
 		projects[project].tasks.push(this);
-
+		localStorage.setItem('projects', JSON.stringify(projects));
 		return projects[project].tasks;
 	};
 
@@ -162,6 +162,7 @@ function showDetails(project, id) {
 		const saveTaskBtnId = saveTaskBtn.closest('.task');
 		// console.log(saveTaskBtnId.id);
 		saveDetails(selectedProject, saveTaskBtnId.id);
+		localStorage.setItem('projects', JSON.stringify(projects));
 		refreshTasks();
 		updateTasks(projects[project].tasks);
 		showDetailsListener();
@@ -187,6 +188,7 @@ function saveCheckbox(project, id) {
 	// );
 	// console.log(projects[project].tasks[id]);
 	projects[project].tasks[id].complete = checkbox.checked;
+	localStorage.setItem('projects', JSON.stringify(projects));
 }
 
 function saveDetails(project, id) {
