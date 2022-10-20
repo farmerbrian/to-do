@@ -1,6 +1,7 @@
 import { projects, selectedProject } from './projectfunctions.js';
 import { selectProjectListener } from './projectfunctions.js';
 
+// factory function for creating and saving new tasks
 const makeTask = (project, title) => {
 	const task = {};
 	task.title = title;
@@ -20,11 +21,14 @@ const makeTask = (project, title) => {
 
 const content = document.getElementById('tasks-container');
 const projectListName = document.getElementById('project-name');
+
+// clear list of tasks prior to update
 function refreshTasks() {
 	content.innerHTML = null;
 	projectListName.innerHTML = `${projects[selectedProject].title}`;
 }
 
+// build list of tasks in html from object
 function updateTasks(array) {
 	for (let i = 0; i < array.length; i++) {
 		let divEl = document.createElement('div');
@@ -48,6 +52,7 @@ function updateTasks(array) {
 	}
 }
 
+// show or hide task details from click event
 function showDetailsListener() {
 	const allTasks = document.querySelectorAll('.task');
 	allTasks.forEach((taskDiv) => {
@@ -69,6 +74,7 @@ function showDetailsListener() {
 	});
 }
 
+// build task details form in html
 function showDetails(project, id) {
 	const div = document.getElementById(`${id}`);
 
@@ -148,19 +154,19 @@ function showDetails(project, id) {
 	detailsDiv.appendChild(detailsForm);
 	div.appendChild(detailsDiv);
 
+	// delete button and logic
 	const delTaskBtn = document.getElementById('delBtn');
 	delTaskBtn.addEventListener('click', (event) => {
 		projects[selectedProject].tasks.splice(id, 1);
 		refreshTasks();
 		updateTasks(projects[project].tasks);
 		showDetailsListener();
-		// return projects;
 	});
 
+	// save button and logic
 	const saveTaskBtn = document.getElementById('saveBtn');
 	saveTaskBtn.addEventListener('click', (event) => {
 		const saveTaskBtnId = saveTaskBtn.closest('.task');
-		// console.log(saveTaskBtnId.id);
 		saveDetails(selectedProject, saveTaskBtnId.id);
 		localStorage.setItem('projects', JSON.stringify(projects));
 		refreshTasks();
@@ -169,6 +175,7 @@ function showDetails(project, id) {
 	});
 }
 
+// did someone click a checkbox?
 function checkboxListener() {
 	const allCheckboxes = document.querySelectorAll('.checkbox');
 	allCheckboxes.forEach((taskCheckBox) => {
@@ -178,6 +185,7 @@ function checkboxListener() {
 	});
 }
 
+// someone clicked a checkbox, better do something and save that to the object and add some styling
 function saveCheckbox(project, id) {
 	const checkbox = document.getElementById(`checkbox-${id}`);
 	const findTaskDiv = document.getElementById(id);
@@ -191,6 +199,7 @@ function saveCheckbox(project, id) {
 	localStorage.setItem('projects', JSON.stringify(projects));
 }
 
+// save those form details to the object
 function saveDetails(project, id) {
 	const title = document.getElementById('taskTitle');
 	projects[project].tasks[id].title = title.value;
@@ -212,4 +221,3 @@ export { makeTask };
 export { updateTasks };
 export { refreshTasks };
 export { projects };
-// export { tasks };

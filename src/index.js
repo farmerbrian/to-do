@@ -28,24 +28,22 @@ function preventRefresh() {
 }
 preventRefresh();
 
+// Create a New Project Button and logic
 const newProjectBtn = document.querySelector('#newProject');
 const newProjectValue = document.getElementById('project');
 newProjectBtn.addEventListener('click', (event) => {
 	event.preventDefault();
-	// console.log(`beginning selectedProject is ${selectedProject}`);
 	let newProject = makeProject(newProjectValue.value);
 	newProject.add();
 	newProjectValue.value = '';
 	refreshProjects();
 	updateProjects(projects);
 	selectProjectListener();
-	// refreshTasks();
-	// updateTasks(projects[selectedProject].tasks);
-	// console.log(`ending selectedProject is ${selectedProject}`);
 	showDetailsListener();
 	checkboxListener();
 });
 
+// Create a New Task Button and logic
 const newTaskBtn = document.querySelector('#newTask');
 const newTaskValue = document.getElementById('task');
 newTaskBtn.addEventListener('click', (event) => {
@@ -59,8 +57,7 @@ newTaskBtn.addEventListener('click', (event) => {
 	checkboxListener();
 });
 
-console.log(projects);
-
+// Create dummy list and data if nothing found in localstorage
 if (projects.length == 0) {
 	const defaultProject = makeProject('Reminders');
 	defaultProject.add();
@@ -77,7 +74,6 @@ if (projects.length == 0) {
 refreshTasks();
 updateTasks(projects[selectedProject].tasks);
 updateProjects(projects);
-
 checkboxListener();
 selectProjectListener();
 showDetailsListener();

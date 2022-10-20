@@ -1,6 +1,8 @@
 import { updateTasks } from './taskfunctions.js';
 import { refreshTasks } from './taskfunctions.js';
 import { showDetailsListener } from './taskfunctions.js';
+
+// create projects array and attempt to load existing projects from localstorage
 let projects;
 let storage = JSON.parse(localStorage.getItem('projects'));
 if (storage) {
@@ -9,8 +11,10 @@ if (storage) {
 	projects = [];
 }
 
+// set initial default project
 let selectedProject = 0;
 
+// factory function for creating and saving new projects
 const makeProject = (title) => {
 	const project = {};
 	project.title = title;
@@ -28,10 +32,12 @@ const makeProject = (title) => {
 
 const content = document.getElementById('project-container');
 
+// clear list of projects prior to update
 function refreshProjects() {
 	content.innerHTML = null;
 }
 
+// build list of projects in html from object
 function updateProjects(array) {
 	for (let i = 0; i < array.length; i++) {
 		let divEl = document.createElement('div');
@@ -48,6 +54,7 @@ function updateProjects(array) {
 	}
 }
 
+// update selectedProject from click event and update html to newly selected project
 function selectProjectListener() {
 	const allProjects = document.querySelectorAll('.project');
 	allProjects.forEach((projectDiv) => {
