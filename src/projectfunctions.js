@@ -24,7 +24,6 @@ const content = document.getElementById('project-container');
 
 function refreshProjects() {
 	content.innerHTML = null;
-	console.log("I'm inside refreshProjects");
 }
 
 function updateProjects(array) {
@@ -40,7 +39,6 @@ function updateProjects(array) {
 		divTitleEl.appendChild(inputH3);
 		divEl.appendChild(divTitleEl);
 		content.appendChild(divEl);
-		console.log("I'm inside updateProjects");
 	}
 }
 
@@ -50,7 +48,6 @@ function selectProjectListener() {
 		projectDiv.firstChild.addEventListener('click', (event) => {
 			let divId = projectDiv.id;
 			selectedProject = divId.match(/[0-9]+/g);
-			console.log(selectedProject);
 			refreshTasks();
 			updateTasks(projects[selectedProject].tasks);
 			showDetailsListener();

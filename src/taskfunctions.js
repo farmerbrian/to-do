@@ -1,7 +1,5 @@
 import { projects, selectedProject } from './projectfunctions.js';
 import { selectProjectListener } from './projectfunctions.js';
-// import {makeProject} from './projectfunctions.js';
-let tasks = [];
 
 const makeTask = (project, title) => {
 	const task = {};
@@ -21,9 +19,10 @@ const makeTask = (project, title) => {
 };
 
 const content = document.getElementById('tasks-container');
-
+const projectListName = document.getElementById('project-name');
 function refreshTasks() {
 	content.innerHTML = null;
+	projectListName.innerHTML = `${projects[selectedProject].title}`;
 }
 
 function updateTasks(array) {
@@ -58,11 +57,9 @@ function showDetailsListener() {
 				let findDiv = document.querySelector('.task-details-div');
 				if (findDiv == null) {
 					showDetails(selectedProject, taskDiv.id);
-					// saveBtnListner();
 				} else {
 					findDiv.remove();
 					showDetails(selectedProject, taskDiv.id);
-					// saveBtnListner();
 				}
 			} else {
 				let findDiv = document.querySelector('.task-details-div');
@@ -176,8 +173,8 @@ function checkboxListener() {
 	// console.log(allCheckboxes);
 	allCheckboxes.forEach((taskCheckBox) => {
 		taskCheckBox.addEventListener('click', (event) => {
-			console.log('trying to save checkbox');
-			console.log(taskCheckBox.id.match(/[0-9]+/g));
+			// console.log('trying to save checkbox');
+			// console.log(taskCheckBox.id.match(/[0-9]+/g));
 			saveCheckbox(selectedProject, taskCheckBox.id.match(/[0-9]+/g));
 		});
 	});
@@ -213,4 +210,4 @@ export { makeTask };
 export { updateTasks };
 export { refreshTasks };
 export { projects };
-export { tasks };
+// export { tasks };
