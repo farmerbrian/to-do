@@ -44,6 +44,9 @@ function updateTasks(array) {
 		inputEl.classList.add('checkbox');
 		let inputH3 = document.createElement('h3');
 		inputH3.classList.add('task-name');
+		if (array[i].complete == true) {
+			inputH3.classList.add('completed-task');
+		}
 		inputH3.innerHTML = array[i].title;
 		divTitleEl.appendChild(inputEl);
 		divTitleEl.appendChild(inputH3);
