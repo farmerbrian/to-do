@@ -39,6 +39,10 @@ h3 {
   text-align: center;
 }
 
+.project-name {
+  cursor: pointer;
+}
+
 .project-title-div {
   margin-top: 0px;
   margin-bottom: 0px;
