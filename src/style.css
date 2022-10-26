@@ -15,11 +15,6 @@ h3 {
   font-weight: 500;
 }
 
-.hamburger {
-  height: 30px;
-  width: auto;
-  color: white;
-}
 
 #page-container {
   display: grid;
